@@ -1,0 +1,61 @@
+# <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  Dcoker Compose - Nginx, PHP, Postgres
+# 
+#  #  Developed by    : LeGrizzly#0341
+#  #  Support         : LeGrizzly#0341
+#  #  GitHub          : https://github.com/xalsie
+#   _                _____          _               _         
+#  | |              / ____|        (_)             | |        
+#  | |        ___  | |  __   _ __   _   ____  ____ | |  _   _ 
+#  | |       / _ \ | | |_ | | \__| | | |_  / |_  / | | | | | |
+#  | |____  |  __/ | |__| | | |    | |  / /   / /  | | | |_| |
+#  |______|  \___|  \_____| |_|    |_| /___| /___| |_|  \__, |
+#                                                        __/ |
+#                                                       |___/
+#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~_Update: 13/05/23_~~-->
+version: '3.8'
+
+services:
+  nginx:                        # ok
+    image: nginx:alpine
+    container_name: nginx
+    volumes:
+      - ./docker/nginx/nginx.conf/default.conf:/etc/nginx/conf.d/default.conf
+      - ./www:/var/www/html/
+    ports:
+      - 8080:80
+    depends_on:
+      - php
+    networks:
+      - net-for-front
+
+  php:                          # build ok
+    image: php-custom:3.0.1
+    container_name: php
+    # build:
+    #   context: ./docker/php
+    #   dockerfile: Dockerfile
+    volumes:
+      - ./www:/var/www/html/
+    networks:
+      - net-for-front
+      - net-for-back
+
+  composer:                     # build ok
+    image: composer-custom:1.0.1
+    container_name: composer
+    # build:
+    #   context: ./docker/composer
+    #   dockerfile: Dockerfile
+    volumes:
+      - ./www:/var/www/html/
+    # command: "composer --version"
+    command: composer install --prefer-dist
+    networks:
+      - net-for-front
+
+networks:
+  net-for-front:
+    name: front-web
+  net-for-back:
+    name: back-db
