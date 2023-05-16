@@ -12,39 +12,17 @@
 #  |______|  \___|  \_____| |_|    |_| /___| /___| |_|  \__, |
 #                                                        __/ |
 #                                                       |___/
-#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~_Update: 13/05/23_~~-->
+#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~_Update: 16/05/23_~~-->
 FROM alpine:3.17.3
 
 RUN apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/testing add \
     # install necessary PHP packages
     tini \
-    php81 \
-    php81-session \
+    # php81 \
     php81-pgsql \
     php81-pdo_pgsql \
-    php81-dev \
-    php81-gd \
-    php81-xmlreader \
-    php81-bcmath \
-    php81-ctype \
-    php81-curl \
-    php81-exif \
-    php81-iconv \
-    php81-intl \
-    php81-mbstring \
-    php81-opcache \
-    php81-openssl \
-    php81-pcntl \
-    php81-phar \
-    php81-xml \
-    php81-xsl \
-    php81-zip \
-    php81-zlib \
-    php81-dom \
-    php81-fpm \
-    php81-sodium \
-    php81-tokenizer \
-    php81-pecl-apcu && \
+    php81-session \
+    php81-fpm && \
     ln -sf /usr/bin/php81 /usr/bin/php && \
     rm -rf /var/cache/apk/*
 

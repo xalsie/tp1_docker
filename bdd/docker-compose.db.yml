@@ -17,7 +17,7 @@ version: '3.8'
 
 services:
   adminer:      # build ok
-    image: legrizzly/adminer-custom:2.0.0
+    image: legrizzly/adminer-custom:2.0.1
     container_name: adminer
     # build:
     #   context: ./docker/adminer

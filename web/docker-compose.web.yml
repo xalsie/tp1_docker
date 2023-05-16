@@ -30,7 +30,7 @@ services:
       - net-for-front
 
   php:                          # build ok
-    image: legrizzly/php-custom:3.0.1
+    image: legrizzly/php-custom:3.0.2
     container_name: php
     # build:
     #   context: ./docker/php
@@ -48,9 +48,10 @@ services:
     #   context: ./docker/composer
     #   dockerfile: Dockerfile
     volumes:
-      - ./www:/var/www/html/
-    # command: "composer --version"
-    command: composer install --prefer-dist
+      - ./www:/var/www/html
+    command: "composer --version"
+    # command: ["composer install phpmailer/phpmailer"]
+    # command: ["composer require phpmailer/phpmailer"]
     networks:
       - net-for-front
 

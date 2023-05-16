@@ -16,28 +16,23 @@
 FROM alpine:3.17.3
 
 RUN apk --repository http://nl.alpinelinux.org/alpine/edge/testing/ add \
-    wget \
+    wget \ 
     curl \
     git \
-    php81 \
-    php81-curl \
-    php81-openssl \
-    php81-iconv \
-    php81-json \
-    php81-mbstring \
-    php81-phar \
-    php81-dom && \
+    php7 \
+    php7-curl \
+    php7-openssl \
+    php7-iconv \
+    php7-json \
+    php7-mbstring \
+    php7-phar && \
     rm /var/cache/apk/*
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer 
 
 RUN mkdir -p /var/www
 
-WORKDIR /var/www
-
-COPY . /var/www
-
-VOLUME /var/www
+WORKDIR /app
 
 CMD ["/bin/sh"]
 
