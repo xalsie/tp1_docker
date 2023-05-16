@@ -3,3 +3,6 @@
 
 #ignire database
 bdd/database/*
+
+#ignore vendor folder of composer
+www/vendor/*

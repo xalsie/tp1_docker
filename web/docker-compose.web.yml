@@ -48,10 +48,9 @@ services:
     #   context: ./docker/composer
     #   dockerfile: Dockerfile
     volumes:
-      - ./www:/var/www/html
-    command: "composer --version"
-    # command: ["composer install phpmailer/phpmailer"]
-    # command: ["composer require phpmailer/phpmailer"]
+      - ./www:/var/www
+    # command: "composer --version"
+    command: ["composer require phpmailer/phpmailer"]
     networks:
       - net-for-front
 
