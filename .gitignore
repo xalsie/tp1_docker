@@ -5,4 +5,6 @@
 bdd/database/*
 
 #ignore vendor folder of composer
-www/vendor/*
+web/www/vendor/*
+web/www/composer.json
+web/www/composer.lock
