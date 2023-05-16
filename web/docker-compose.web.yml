@@ -12,7 +12,7 @@
 #  |______|  \___|  \_____| |_|    |_| /___| /___| |_|  \__, |
 #                                                        __/ |
 #                                                       |___/
-#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~_Update: 13/05/23_~~-->
+#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~_Update: 16/05/23_~~-->
 version: '3.8'
 
 services:
@@ -32,9 +32,6 @@ services:
   php:                          # build ok
     image: legrizzly/php-custom:3.0.2
     container_name: php
-    # build:
-    #   context: ./docker/php
-    #   dockerfile: Dockerfile
     volumes:
       - ./www:/var/www/html/
     networks:
@@ -44,15 +41,10 @@ services:
   composer:                     # build ok
     image: legrizzly/composer-custom:1.0.1
     container_name: composer
-    # build:
-    #   context: ./docker/composer
-    #   dockerfile: Dockerfile
     volumes:
       - ./www:/var/www
     # command: "composer --version"
-    command: ["composer require phpmailer/phpmailer"]
-    networks:
-      - net-for-front
+    # command: ["composer require phpmailer/phpmailer"]
 
 networks:
   net-for-front:

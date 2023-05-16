@@ -12,16 +12,13 @@
 #  |______|  \___|  \_____| |_|    |_| /___| /___| |_|  \__, |
 #                                                        __/ |
 #                                                       |___/
-#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~_Update: 13/05/23_~~-->
+#  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~_Update: 16/05/23_~~-->
 version: '3.8'
 
 services:
   adminer:      # build ok
     image: legrizzly/adminer-custom:2.0.1
     container_name: adminer
-    # build:
-    #   context: ./docker/adminer
-    #   dockerfile: Dockerfile
     volumes:
       - ./docker/adminer/src/adminer-4.8.1.php:/srv/index.php:ro # -- read-only
     depends_on:
@@ -34,9 +31,6 @@ services:
   postgres:     # build ok
     image: legrizzly/pgsql-custom:1.0.4
     container_name: postgres
-    # build:
-      # context: ./docker/postgres
-      # dockerfile: Dockerfile
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
@@ -47,7 +41,5 @@ services:
       - net-for-back
 
 networks:
-  net-for-front:
-    name: front-web
   net-for-back:
     name: back-db
