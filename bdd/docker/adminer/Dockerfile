@@ -28,6 +28,8 @@ RUN apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/testi
     ln -sf /usr/bin/php81 /usr/bin/php && \
     rm -rf /var/cache/apk/*
 
+COPY src/adminer-4.8.1.php /srv/index.php
+
 WORKDIR /srv
 EXPOSE 80
 

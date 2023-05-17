@@ -19,8 +19,6 @@ services:
   adminer:      # build ok
     image: legrizzly/adminer-custom:2.0.1
     container_name: adminer
-    volumes:
-      - ./docker/adminer/src/adminer-4.8.1.php:/srv/index.php:ro # -- read-only
     depends_on:
       - postgres
     ports:
