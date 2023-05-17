@@ -26,7 +26,7 @@ if [ -z "$(ls -A "$PGDATA")" ]; then
 
     if [ "$POSTGRES_PASSWORD" ]; then
       pass="PASSWORD '$POSTGRES_PASSWORD'"
-      authMethod=md5
+      authMethod=password
     else
       echo "======================================="
       echo "=       !!! NO PASSWORD SET !!!       ="
@@ -35,7 +35,7 @@ if [ -z "$(ls -A "$PGDATA")" ]; then
       echo "=  (Use \$POSTGRES_PASSWORD env var)  ="
       echo "======================================="
       pass="PASSWORD 'postgres'"
-      authMethod=md5
+      authMethod=password
     fi
     echo
 
@@ -71,7 +71,7 @@ if [ -z "$(ls -A "$PGDATA")" ]; then
 
     su-exec postgres pg_ctl -D "$PGDATA" -m fast -w stop
 
-    { echo; echo "host all all 0.0.0.0/0 $authMethod"; } >> "$PGDATA"/pg_hba.conf
+    { echo; echo "host all all all trust"; } >> "$PGDATA"/pg_hba.conf
 fi
 
 exec su-exec postgres "$@"
