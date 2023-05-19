@@ -15,9 +15,6 @@
 #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~_Update: 16/05/23_~~-->
 FROM alpine:3.17.3
 
-ENV MEMORY=256M
-ENV UPLOAD=2048M
-
 RUN apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/testing add \
     # Packages
     tini \
@@ -36,7 +33,7 @@ EXPOSE 80
 ENTRYPOINT ["/sbin/tini", "--"]
 
 CMD /usr/bin/php \
-    -d memory_limit=$MEMORY \
-    -d upload_max_filesize=$UPLOAD \
-    -d post_max_size=$UPLOAD \
+    -d memory_limit=256M \
+    -d upload_max_filesize=2048M \
+    -d post_max_size=2048M \
     -S 0.0.0.0:80
