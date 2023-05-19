@@ -27,7 +27,7 @@ services:
       - net-for-back
 
   postgres:     # build ok
-    image: legrizzly/pgsql-custom:1.0.4
+    image: legrizzly/pgsql-custom:1.0.5
     container_name: postgres
     environment:
       POSTGRES_DB: postgres
